@@ -1,0 +1,228 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saraf Singh Assoc.</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/c939d0e917.js"></script>
+    <link rel="shortcut icon" href="../images/resources/node.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {{!-- <link href="../images/index/styles.css"> --}}
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script src="../images/index/index.js"></script>
+    <style>
+        body{
+            /*background-color: rgb(24, 22, 22);*/
+            background: linear-gradient(to left, whitesmoke, #333333);
+            color:#fff;
+            margin: 25px;
+            overflow: scroll;
+            overflow-x: hidden;
+        }
+        ::-webkit-scrollbar{
+            width:0px
+        }
+        .card{
+            color:black
+        }
+        .parent{
+            display: block;
+        }
+        .btn-group{
+            box-shadow: 0px 0px 5px 5px black;
+        }
+        p{
+            text-align:left
+        }
+        .jumbotron{
+            background-color:rgb(19, 18, 18);
+            box-shadow:0px 0px 5px 5px black
+        }
+        .main{
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100vh;
+        }
+        .box{
+            width: 180px;
+            height: 180px;
+            background-color: rgb(7, 114, 156);
+            border: 6px solid rgb(7, 114, 156);
+            position: relative;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        .box::before{
+            content: "Loading...";
+            font-family: cursive;
+            font-size: 2rem;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        .box::after{
+            content:"";
+            width:100%;
+            height: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            background-color: white;
+            transform: scale(1.6);
+            border-radius: 30%;
+            animation: animate 15s ease-in-out infinite;
+        }
+        .rotate{
+            animation: ani 2s linear infinite;
+        }
+        #cdata_on_chart,#cdata_on_chart_nc,#cdata_on_chart_td,#cdata_on_chart_nd,#cdata_on_chart_tr,#cdata_on_chart_nr{
+            width:400px;
+            height:150px;
+        }
+        @keyframes ani{
+            100%{
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+        @keyframes animate{
+            0%{
+                transform: translateY(0) rotate(0) scale(1.6);
+            }
+            50%{
+                transform: translateY(-150%) rotate(360deg) scale(1.6);
+            }
+            100%{
+                transform: translateY(0) rotate(0) scale(1.6);
+            }
+        }
+        @media screen and (max-width:768px){
+            .nav{
+                display: none;
+            }
+            body{
+                margin:15px;
+            }
+            .jumbotron{
+                width: 80vw;
+            }
+            #cdata_on_chart,#cdata_on_chart_nc,#cdata_on_chart_td,#cdata_on_chart_nd,#cdata_on_chart_tr,#cdata_on_chart_nr{
+                width:800px;
+                height:300px;
+            }
+            .display-3{
+                font-size:40px
+            }
+        }
+    </style>
+    <script>
+        
+    </script>
+</head>
+<body>
+    {{!-- <div class="main">
+        <div class="box"></div>
+    </div> --}}
+    <div class="parent">
+    <center>
+        <nav class="nav justify-content-center">
+          <div class="btn-group" role="group" aria-label="_full_nav">
+              <button type="button" class="btn btn-warning" onclick="location.replace('../')">Home</button>
+              <button type="button" class="btn btn-warning" onclick="location.replace('../about_us')">About us</button>
+              <button type="button" class="btn btn-warning" onclick="location.replace('../subscribe')">Subscribe</button>
+              <div class="btn-group" style="box-shadow: none;" role="group">
+                  <button id="dropdownId" type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Community
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownId">
+                      <a class="dropdown-item" href="../community_page">Local</a>
+                      <a class="dropdown-item" href="../community_page">Global</a>
+                      <a class="dropdown-item" href="../community_page">Community</a>
+                  </div>
+              </div>
+          </div>
+        </nav>
+        <br><br>
+    <div>
+        <div class="jumbotron">
+            <h1 class="display-3">Welcome Aboard</h1>
+            <p class="lead">All in one <span title="China Originated Virus In December 19">C<i class="fa fa-virus rotate"></i>VID-19</span> tracker</p>
+            <hr class="my-2">
+            <p>Differentiate between positive and negative people, find safe places to go, maintain your health in this
+                lockdown period and many more
+                <br><br>
+            </p>
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="#" role="button">Get started</a>
+            </p>
+            <table class="table table-striped table-responsive" style="color: white;">
+                <thead class="thead">
+                    <tr>
+                        <th id="__cstat">Status(Global)</th>
+                        <th>Deaths</th>
+                        <th>Cases</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td scope="row">New</td>
+                            <td id="__NewDeaths"></td>
+                            <td id="__newCasesConfirmed"></td>
+                        </tr>
+                        <tr>
+                            <td scope="row">Total</td>
+                            <td id="__totalDeaths"></td>
+                            <td id="__totalCases"></td>
+                        </tr>
+                    </tbody>
+            </table>
+        </div>
+    </div>
+    <br>
+    <div class="jumbotron">
+        <h3>Total cases in countries (Population wise)</h3>
+        <canvas id="cdata_on_chart"></canvas>
+    </div>
+    <div class="jumbotron">
+        <h3>New cases in countries (Population wise)</h3>
+        <canvas id="cdata_on_chart_nc"></canvas>
+    </div>
+    <div class="jumbotron">
+        <h3>Total Deaths in countries (Population wise)</h3>
+        <canvas id="cdata_on_chart_td"></canvas>
+    </div>
+    <div class="jumbotron">
+        <h3>New Deaths in countries (Population wise)</h3>
+        <canvas id="cdata_on_chart_nd"></canvas>
+    </div>
+    <div class="jumbotron">
+        <h3>Total Recovered in countries (Population wise)</h3>
+        <canvas id="cdata_on_chart_tr"></canvas>
+    </div>
+    <div class="jumbotron">
+        <h3>New Recovered in countries (Population wise)</h3>
+        <canvas id="cdata_on_chart_nr"></canvas>
+    </div>
+    <div class="jumbotron">
+        <button type="button" class="btn btn-outline-primary" onclick="alert('Not ready yet')">Get Started</button>
+    </div>
+    <footer class="jumbotron">
+    <h1><i class="fa fa-copyright" aria-hidden="true"></i> Saraf Singh Assoc.</h1>
+    </footer>
+    </center>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+        __createDataOnChart();
+    </script>
+</body>
+</html>
