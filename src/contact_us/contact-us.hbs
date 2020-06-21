@@ -1,0 +1,156 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="contact-us-styles.css">
+    <script src ="index.js"></script>
+    <script src="https://kit.fontawesome.com/c939d0e917.js"></script>
+    <style>
+      
+
+      *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        outline: none;
+        font-family: 'arial',helvetica, sans-serif;
+      }
+      .header{
+        display: flex;
+        position: relative;
+        height: 60px;
+        background: #353333;
+        margin: 0 auto;
+        align-items: right;
+      }
+      .form{
+        padding-top: 20px;
+        padding-left: 900px;
+      }
+      a{
+        text-decoration: none;
+        color: rgba(245, 245, 245, 0.459);
+        padding-right: 20px;
+        padding-top: 20px;
+      }
+      body{
+        background: url('https://i.imgur.com/kk76J5I.jpg') no-repeat top center;
+        background-size: cover;
+        height: 100vh;
+      }
+
+      .wrapper{
+
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        border-radius: 30px;
+        max-width: 550px;
+        height: 600px;
+        background: rgba(0,0,0,0.8);
+        padding: 30px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+
+      }
+
+      .wrapper .title h1{
+        color: #c5ecfd;
+        text-align: center;
+        margin-bottom: 25px;
+      }
+
+      .contact-form{
+        display: flex;
+      }
+
+      .btn{
+        display: flex ;
+        align-items: center;
+        margin-top: auto;
+        margin-left: 0px;
+        padding-right: 300px;
+        margin-right: auto;
+        margin-bottom: auto;
+      }
+      .send{
+        
+      
+
+        
+        margin-right: 0px;
+        padding-bottom: 20px;
+        padding-right:40px;
+        padding-left: 40;
+        text-align: center;
+        border-radius: 30px;
+        background: linear-gradient(to right, aqua, rgb(24, 24, 161));
+        color: whitesmoke;
+        border: none;
+
+
+      }
+      input{
+        padding-right: 20px;
+        padding-left: 20px;
+        padding-top: 20px;
+        padding-right: 20px;
+        text-align: center;
+        border: none;
+        background: none; 
+        color: white;
+        font-weight: bold;
+        font-size: 20px;
+      }
+      .input-fields{
+        padding-left: 90px;
+      }
+      .btn{
+        padding-left: 70px;
+      }
+      .btn{
+        margin-right: 20px;
+          margin-left: 10px;
+      }
+    </style>
+</head>
+<body>
+    <div class = "header">
+        <div class="form"> <a href="file:///C:/Users/USER/Desktop/my_Website/cool_website/my_website/index2.html">home</a></div> 
+            <a href="form1.html">community</a>
+            <a href="form2.html">about us</a>
+            <a hr+ef="contact-us.html">contact us</a>    </div>
+    <div class="wrapper">
+        <div class="title">
+          <h1>contact us form</h1>
+        </div>
+        <div class="contact-form">
+          <div class="input-fields">
+            <input type="text" class="input" placeholder="Name">
+            <br>
+            <br>
+
+            <input type="text" class="input" placeholder="Email Address">
+            <br>
+            <br>
+            <input type="text" class="input" placeholder="Phone">
+            <br>
+            <br>
+            <input type="text" class="input" placeholder="Subject">
+            <br>
+            <br>
+            <div class="btn"><input type="submit" class="send" onclick="send()"></div>
+          </div>
+          
+            
+           
+          </div>
+        </div>
+      </div>
+      
+      
+</body>
+</html>
