@@ -39,6 +39,9 @@ app.get('/index-homepage', (request, res) =>{
 app.get('/contact_us', (request, res) =>{
   res.render('contact_us/contact-us',{none:null})
 })
+app.get('/google_maps', (request, res) =>{
+  res.render('google_maps/indexMaps',{none:null})
+})
 app.get('/login', (request, res) =>{
   res.render('login/login',{none:null})
 })

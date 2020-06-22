@@ -1,15 +1,13 @@
-var firebaseConfig = {
-    apiKey: "AIzaSyBaIwLYQionwFwlFCPtGmBNhg9JZ0_mqZA",
-    authDomain: "corona-index-db.firebaseapp.com",
-    databaseURL: "https://corona-index-db.firebaseio.com",
-    projectId: "corona-index-db",
-    storageBucket: "corona-index-db.appspot.com",
-    messagingSenderId: "622446950632",
-    appId: "1:622446950632:web:a6d2af3bda10eb97d4315d",
-    measurementId: "G-HS31KZHBCP"
-};
+auth.onAuthStateChanged(user=>{
+if(user){
+    location.replace('../dashboard')
+}
+})
 
-firebase.initializeApp(firebaseConfig);
-firebase.analytics();
-const db = firebase.firestore();
-const auth = firebase.auth();
+let __userLogin = (em,pass)=>{
+    auth.signInWithEmailAndPassword(em, pass).catch(err=>{
+        alert(`${err.code}=>${err.message}`)
+    }).then(()=>{
+        location.replace('../dashboard')
+    })
+}

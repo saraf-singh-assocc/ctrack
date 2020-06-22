@@ -12,6 +12,11 @@
     <link rel="shortcut icon" href="../images/resources/node.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-analytics.js"></script>
     <style>
         body{
             /*background-color: rgb(24, 22, 22);*/
@@ -125,10 +130,23 @@
         }
     </style>
     <script>
-      $(document).ready(()=>{
-        
-      });
+        var firebaseConfig = {
+        apiKey: "AIzaSyBaIwLYQionwFwlFCPtGmBNhg9JZ0_mqZA",
+        authDomain: "corona-index-db.firebaseapp.com",
+        databaseURL: "https://corona-index-db.firebaseio.com",
+        projectId: "corona-index-db",
+        storageBucket: "corona-index-db.appspot.com",
+        messagingSenderId: "622446950632",
+        appId: "1:622446950632:web:a6d2af3bda10eb97d4315d",
+        measurementId: "G-HS31KZHBCP"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+    const db = firebase.firestore();
+    const auth = firebase.auth();
     </script>
+    <script src="../images/login/index.js"></script>
   </head>
   <body>
     <div class="jumbotron">
@@ -144,11 +162,11 @@
       </div>
       <br>
       <center>
-      <button type="button" id="submit" class="btn btn-primary btn-lg">Login</button>
+      <button type="button" id="submit" class="btn btn-primary btn-lg" onclick="__userLogin($('#userem').val(),$('#password').val())">Login</button>
       &nbsp;&nbsp;
       <button type="reset" class="btn btn-danger btn-lg">Reset</button>
       <br><br>
-      <small class="text-muted"><a href="#">Signup</a></small>
+      <small class="text-muted"><a href="../signup/">Signup</a></small>
       </center>
     </div>
     <!-- Optional JavaScript -->
