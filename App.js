@@ -15,30 +15,30 @@ app.get('/',(req,res)=>{
 })
 
 app.get('/about_us',(req,res)=>{
-  res.render('about_us/about-us.hbs'),{none:null}
+  res.render('about_us/about-us'),{none:null}
 })
 
 app.get('/community_page',(req,res)=>{
-  res.render('community_page/community-page.hbs',{none:null})
+  res.render('community_page/community-page',{none:null})
 })
 
 app.get('/images/:loc/:fname',(req,res)=>{
   res.sendFile(path.join(__dirname+'/src/'+req.params.loc+'/'+req.params.fname))
 })
 app.get('/index-homepage', (request, response) =>{
-  response.render('/index-homepage/gmaps.hbs',{none:null})
+  response.render('/index-homepage/gmaps',{none:null})
 })
 app.get('about_us', (request, response) =>{
-  response.render('about_us/about-us.hbs',{none:null})
+  response.render('about_us/about-us',{none:null})
 })
 app.get('/community_page', (request, response) =>{
-  response.render('/community_page/community-page.hbs',{none:null})
+  response.render('/community_page/community-page',{none:null})
 })
 app.get('/contact_us', (request, response) =>{
-  response.render('/contact_us/contact-us.hbs',{none:null})
+  response.render('/contact_us/contact-us',{none:null})
 })
 app.get('/login', (request, response) =>{
-  response.render('/login/login.hbs',{none:null})
+  response.render('/login/login',{none:null})
 })
 console.log("> App is running on http://localhost:8000/");
 app.listen(8000)
