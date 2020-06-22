@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Login</title>
+    <title>Signup</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,6 +12,13 @@
     <link rel="shortcut icon" href="../images/resources/node.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-analytics.js"></script>
+    <script src="../images/signup/index.js"></script>
     <style>
         body{
             /*background-color: rgb(24, 22, 22);*/
@@ -34,7 +41,7 @@
         .parent{
             display: block;
         }
-        .btn-group{
+        .btn-group[data-toggle != "buttons"]{
             box-shadow: 0px 0px 5px 5px black;
         }
         p{
@@ -124,31 +131,32 @@
             }
         }
     </style>
-    <script>
-      $(document).ready(()=>{
-        
-      });
-    </script>
   </head>
   <body>
     <div class="jumbotron">
-      <h1 class="text-center display-3">L<i class="fa fa-virus rotate"></i>gin</h1>
+      <h1 class="text-center display-3">Signup</h1>
       <br>
       <div class="form-group">
-        <label for="userem">User email</label>
-        <input type="text" name="userem" id="userem" class="form-control" placeholder="Enter your user email" aria-describedby="helpId">
+        <label for="userem">Choose email</label>
+        <input type="text" name="userem" id="userem" required class="form-control" placeholder="Choose an email" aria-describedby="helpId">
       </div>
       <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" class="form-control" name="password" id="password" placeholder="Enter your password">
+        <input type="password" class="form-control" name="password" required id="password" placeholder="Choose a password">
+      </div>
+      <div class="btn-group" data-toggle="buttons">
+          <label class="btn btn-primary">
+              <input type="checkbox" name="_1" onchange="__getLocation()" id="_1" autocomplete="off">
+              Provide location (mandatory)
+          </label>
       </div>
       <br>
       <center>
-      <button type="button" id="submit" class="btn btn-primary btn-lg">Login</button>
+      <button type="button" id="submit" class="btn btn-primary btn-lg" onclick="if(document.getElementById('_1').checked == true){__signupUser($('#userem').val(),$('#password').val())}">Signup</button>
       &nbsp;&nbsp;
       <button type="reset" class="btn btn-danger btn-lg">Reset</button>
       <br><br>
-      <small class="text-muted"><a href="#">Signup</a></small>
+      <small class="text-muted"><a href="../login/">Login</a></small>
       </center>
     </div>
     <!-- Optional JavaScript -->

@@ -1,8 +1,10 @@
 const express = require('express')
 const app = express()
+const router = express.Router()
 const fs = require('fs')
 const hbs = require('express-hbs')
 const path = require('path')
+const bodyParser = require('body-parser')
  
 app.engine('hbs', hbs.express4({
   partialsDir: __dirname + '/src/partials'
@@ -10,11 +12,20 @@ app.engine('hbs', hbs.express4({
 app.set('view engine', 'hbs');
 app.set('views',path.join(__dirname + '/src/'))
 
+app.use(bodyParser.urlencoded({extended:false}))
+app.use(bodyParser.json())
+
 app.get('/',(req,res)=>{
   res.render('index/index',{none:null})
 })
 app.get('/about_us',(req,res)=>{
   res.render('about_us/about-us'),{none:null}
+})
+app.get('/dashboard',(req,res)=>{
+  res.render('dashboard/dashboard'),{none:null}
+})
+app.get('/signup',(req,res)=>{
+  res.render('signup/signup'),{none:null}
 })
 app.get('/community_page',(req,res)=>{
   res.render('community_page/community-page',{none:null})
