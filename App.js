@@ -37,6 +37,9 @@ app.get('/community_page', (request, response) =>{
 app.get('/contact_us', (request, response) =>{
   response.render('/contact_us/contact-us.hbs',{none:null})
 })
+app.get('/login', (request, response) =>{
+  response.render('/login/login.hbs',{none:null})
+})
 console.log("> App is running on http://localhost:8000/");
 app.listen(8000)
 /* Port:            8000
