@@ -14,6 +14,10 @@
     <!-- TODO: Add SDKs for Firebase products that you want to use
         https://firebase.google.com/docs/web/setup#available-libraries -->
     <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-analytics.js"></script>
+    <link rel="shortcut icon" href="../images/resources/node.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
     <script>
         var firebaseConfig = {
         apiKey: "AIzaSyBaIwLYQionwFwlFCPtGmBNhg9JZ0_mqZA",
@@ -29,9 +33,141 @@
     firebase.initializeApp(firebaseConfig);
     firebase.analytics();
     </script>
+    <style>
+      body{
+        margin: 25px;
+        background-color: rgb(20, 20, 20);
+      }
+      .neon{
+        padding: 20px 20px;
+        display: inline-block;
+        color: #007780;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        text-decoration: none;
+        font-size: 0.8em;
+        overflow: hidden;
+        transition: 0.2s ease;
+      }
+      .neon:hover{
+        color:#111;
+        background: #14c8ff;
+        box-shadow: 0 0 50px #14c8ff;
+      }
+      .neon:nth-child(1){
+        color:#111;
+        background: #14c8ff;
+        box-shadow: 0 0 50px #14c8ff;
+      }
+      .neon:nth-last-child(1):hover{
+        color:#111;
+        background: #ff3714;
+        box-shadow: 0 0 50px #ff3714;
+      }
+      .Navbar-mobile{
+        display: none;
+      }
+      .alert-primary{
+        background-color: #14c8ff;
+        border:none
+      }
+      .table{
+        color: #fff;
+      }
+      @media only screen and (max-width:768px){
+        h3{
+          font-size:20px;
+        }
+        header nav.nav a.nav-link{
+          display:none
+        }
+        .Navbar-mobile{
+          display: block;
+        }
+        hr{
+          display: none;
+        }
+      }
+    </style>
     <script src="../images/dashboard/index.js"></script>
+    <script>
+      
+    </script>
   </head>
   <body>
+    <header>
+      <nav class="nav">
+        <a href="javascript:void(0)" class="__top_name nav-link neon"><jformat>{uemail}</jformat></a>
+        <a class="nav-link neon" href="#">About us</a>
+        <a class="nav-link neon" href="#">Community</a>
+        <a class="nav-link neon" href="#">Maps</a>
+        <a class="nav-link neon" href="#">Contact us</a>
+        <a class="nav-link neon" onclick="__logoutUser()" href="javascript:void(0)">Logout</a>
+      </nav>
+      {{!-- NAVBAR FOR MOBILES --}}
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-bottom Navbar-mobile">
+          <a class="navbar-brand __top_name" href="javascript:void(0)"><jformat>{uemail}</jformat></a>
+          <button class="navbar-toggler hidden-lg-up fa fa-chevron-up" 
+              onclick="if(this.classList.contains('fa-chevron-up')){this.classList.remove('fa-chevron-up');this.classList.add('fa-chevron-down')}else{this.classList.remove('fa-chevron-down');this.classList.add('fa-chevron-up')}" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+              aria-expanded="false" aria-label="Toggle navigation"></button>
+          <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+              <li class="nav-item active">
+                <a class="nav-link" href="javascript:void(0)">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">About us</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Community</a>
+                <div class="dropdown-menu" aria-labelledby="dropdownId">
+                  <a class="dropdown-item" href="#">Local</a>
+                  <a class="dropdown-item" href="#">Global</a>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Maps</a>
+              </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+              <input class="form-control mr-sm-2" type="text" placeholder="Search">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search Users</button>
+            </form>
+          </div>
+        </nav>
+    </header>
+    <hr color="#14c8ff">
+    <br>
+    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        <span class="sr-only">Close</span>
+      </button>
+      <p>We detected that you live in <jformat>{ucountry}</jformat>. <small>Details will be shown accordingly</small></p>
+    </div>
+    <div id="__contents">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Cases</th>
+            <th><jformat>{ucountry}</jformat></th>
+            <th>World</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td scope="row">Total cases</td>
+            <td id="__total_cases_of_self_country"></td>
+            <td id="__total_cases_of_whole_world"></td>
+          </tr>
+          <tr>
+            <td scope="row">New cases</td>
+            <td id="__new_cases_of_self_country"></td>
+            <td id="__new_cases_of_whole_world"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
