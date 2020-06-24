@@ -146,29 +146,41 @@
     const db = firebase.firestore();
     const auth = firebase.auth();
     </script>
-    <script src="../images/login/index.js"></script>
+    {{!-- <script src="../images/login/index.js"></script> --}}
+    <script src="../images/login/indexPH.js"></script>
   </head>
   <body>
     <div class="jumbotron">
       <h1 class="text-center display-3">L<i class="fa fa-virus rotate"></i>gin</h1>
       <br>
       <div class="form-group">
-        <label for="userem">User email</label>
-        <input type="text" name="userem" id="userem" class="form-control" placeholder="Enter your user email" aria-describedby="helpId">
+        <label for="usern">Phone number</label>
+        <input type="tel" name="usern" id="usern" class="form-control" placeholder="+911234567890" aria-describedby="helpId">
+      </div>
+      <center><div id="recaptcha-verify"></div></center>
+      <div class="form-group">
+          <button type="button" class="btn btn-outline-primary" onclick="__vc()" id="scode">Send code</button>
       </div>
       <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" name="password" id="password" placeholder="Enter your password">
+        <label for="__vcode">Enter verification code</label>
+        <input type="text" name="__vcode" id="__vcode" class="form-control" placeholder="Enter verification code" aria-describedby="helpId">
+        <small id="helpId" class="text-muted">Enter verification code sent to the specified number</small>
       </div>
       <br>
+      <div class="btn-group" data-toggle="buttons">
+          <label class="btn btn-primary">
+              <input type="checkbox" name="_1" onchange="__getLocation()" id="_1" autocomplete="off">
+              Provide location (mandatory)
+          </label>
+      </div>
       <center>
-      <button type="button" id="submit" class="btn btn-primary btn-lg" onclick="__userLogin($('#userem').val(),$('#password').val())">Login</button>
+      <button type="button" id="submit" onclick="__sub()" class="btn btn-primary btn-lg">Login</button>
       &nbsp;&nbsp;
       <button type="reset" class="btn btn-danger btn-lg">Reset</button>
       <br><br>
       <small class="text-muted"><a href="../signup/">Signup</a></small>
       <br>
-      <small class="text-muted"><a href="../login/phone">Login with phone number</a></small>
+      <small class="text-muted"><a href="../login/">Login with email</a></small>
       </center>
     </div>
     <!-- Optional JavaScript -->

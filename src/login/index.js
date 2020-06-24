@@ -1,3 +1,5 @@
+auth.useDeviceLanguage()
+
 auth.onAuthStateChanged(user=>{
 if(user){
     location.replace('../dashboard')

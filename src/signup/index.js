@@ -14,6 +14,14 @@ firebase.analytics();
 const db = firebase.firestore();
 const auth = firebase.auth();
 
+firebase.auth().onAuthStateChanged(function(user) { //or use firebase.auth().currentUser;
+    if (user) {
+        location.replace('../dashboard')
+    } else {
+        // No user is signed in.
+    }
+});
+
 let __getLocation = ()=>{
     navigator.geolocation.getCurrentPosition((pos)=>{
         window.sessionStorage.setItem('ctrack-pos-lat',pos.coords.latitude)

@@ -87,22 +87,38 @@
         hr{
           display: none;
         }
+        .hid-on-mobile{
+          display: none;
+        }
+        .col-xs-1{
+          width:100%;
+        }
       }
     </style>
     <script src="../images/dashboard/index.js"></script>
-    <script>
-      
-    </script>
   </head>
   <body>
     <header>
       <nav class="nav">
-        <a href="javascript:void(0)" class="__top_name nav-link neon"><jformat>{uemail}</jformat></a>
-        <a class="nav-link neon" href="#">About us</a>
-        <a class="nav-link neon" href="#">Community</a>
-        <a class="nav-link neon" href="#">Maps</a>
-        <a class="nav-link neon" href="#">Contact us</a>
-        <a class="nav-link neon" onclick="__logoutUser()" href="javascript:void(0)">Logout</a>
+        <a href="javascript:void(0)" class="__top_name nav-link disabled"><jformat>{uemail}</jformat></a>
+        <a class="nav-link" href="#">About us</a>
+        {{!-- <a class="nav-link" href="#">Community</a> --}}
+        <div class="btn-group hid-on-mobile" role="group" aria-label="__community">
+          <div class="btn-group" role="group">
+            <button id="dropdownId" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+              Community
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownId">
+              <a class="dropdown-item" href="../community_page/">The Community <i class="fa fa-globe" aria-hidden="true"></i></a>
+              <a class="dropdown-item" href="../community_new/">Make your own Community <i class="fa fa-exclamation" aria-hidden="true"></i></a>
+              <a class="dropdown-item" href="#">Visit global communites <i class="fas fa-globe-asia fa-lg fa-fw"></i></a>
+            </div>
+          </div>
+        </div>
+        <a class="nav-link" href="#">Maps</a>
+        <a class="nav-link" href="#">Contact us</a>
+        <a class="nav-link" onclick="__logoutUser()" href="javascript:void(0)">Logout</a>
       </nav>
       {{!-- NAVBAR FOR MOBILES --}}
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-bottom Navbar-mobile">
@@ -121,8 +137,9 @@
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Community</a>
                 <div class="dropdown-menu" aria-labelledby="dropdownId">
-                  <a class="dropdown-item" href="#">Local</a>
-                  <a class="dropdown-item" href="#">Global</a>
+                  <a class="dropdown-item" href="../community_page/">The Community <i class="fa fa-globe" aria-hidden="true"></i></a>
+                  <a class="dropdown-item" href="../community_new/">Make your own Community <i class="fa fa-exclamation" aria-hidden="true"></i></a>
+                  <a class="dropdown-item" href="#">Visit global communites <i class="fas fa-globe-asia fa-lg fa-fw"></i></a>
                 </div>
               </li>
               <li class="nav-item">
@@ -138,35 +155,34 @@
     </header>
     <hr color="#14c8ff">
     <br>
-    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+    <center>
+    <div class="alert btn btn-outline-primary alert-dismissible fade show" role="alert">
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
         <span class="sr-only">Close</span>
       </button>
       <p>We detected that you live in <jformat>{ucountry}</jformat>. <small>Details will be shown accordingly</small></p>
     </div>
+    </center>
     <div id="__contents">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Cases</th>
-            <th><jformat>{ucountry}</jformat></th>
-            <th>World</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td scope="row">Total cases</td>
-            <td id="__total_cases_of_self_country"></td>
-            <td id="__total_cases_of_whole_world"></td>
-          </tr>
-          <tr>
-            <td scope="row">New cases</td>
-            <td id="__new_cases_of_self_country"></td>
-            <td id="__new_cases_of_whole_world"></td>
-          </tr>
-        </tbody>
-      </table>
+        <div class="jumbotron" id="__sponsor">
+          <h1 class="display-4">The Community</h1>
+          <p class="lead">Get news from Saraf Singh Assoc.</p>
+          <hr class="my-2">
+          <p>Follow <kbd>The Community</kbd> to get frequent updates on Covid-19</p>
+          <p class="lead">
+            <a class="btn btn-primary btn-lg" href="../community_page/" role="button">Visit profile  </a>
+          </p>
+        </div>
+      <div>
+        <button type="button" class="btn btn-outline-primary" style="width:100%" onclick="location.replace('../community_new')">Make your own community</button>
+        <br><br>
+      </div>
+      <div class="alert alert-default">
+        <h1 class="text-center" style="color: white;">Your communities</h1>
+        <br>
+        <div id="__selfCommunities" class="row"></div>
+      </div>
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
