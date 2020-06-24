@@ -1,3 +1,17 @@
+var firebaseConfig = {
+    apiKey: "AIzaSyBaIwLYQionwFwlFCPtGmBNhg9JZ0_mqZA",
+    authDomain: "corona-index-db.firebaseapp.com",
+    databaseURL: "https://corona-index-db.firebaseio.com",
+    projectId: "corona-index-db",
+    storageBucket: "corona-index-db.appspot.com",
+    messagingSenderId: "622446950632",
+    appId: "1:622446950632:web:a6d2af3bda10eb97d4315d",
+    measurementId: "G-HS31KZHBCP"
+};
+
+firebase.initializeApp(firebaseConfig);
+firebase.analytics();
+
 $(document).ready(()=>{
     firebase.auth().onAuthStateChanged(function(user) {
         if(user){
@@ -22,9 +36,15 @@ $(document).ready(()=>{
             location.replace('../login')
         }
     })
-    if(localStorage.getItem('__CTRACK_USER_EMAIL__') == 'shrehanofficial@gmail.com'){
-        $('#__sponsor').css('display','none')
-    }
+    firebase.firestore().collection('user_communities').where('community_name','==','The Community').get().then(qs=>{
+        let temp = [];
+        qs.forEach(doc=>{
+            temp.push(doc.data().members)
+        });
+        if(!(temp.includes(localStorage.getItem('__CTRACK_USER_EMAIL__')))){
+            $('#__sponsor').css('display','none')
+        }
+    })
     firebase.firestore().collection('user_communities').where('owner_email',"==",localStorage.getItem('__CTRACK_USER_EMAIL__')).where('members','array-contains',localStorage.getItem('__CTRACK_USER_EMAIL__')).get().then(qs=>{
         if(qs.size == 0){
             $("#__selfCommunities").append(`
@@ -42,16 +62,46 @@ $(document).ready(()=>{
         else{
             qs.forEach(doc=>{
                 $("#__selfCommunities").append(`
-                <div class="col-xs-1">
+                <div class="col-xs-1" onclick='__gotoCommunity("${doc.id}")'>
                     <div class="card">
                     <div class="card-body">
                     <h3 class="card-title">${doc.data().community_name}</h3>
-                        <p class="card-text">${doc.data().followers.length} followers</p>
+                        <p class="card-text">${doc.data().followers.length} ${doc.data().followers.length == 1 ? 'follower':'followers'}</p>
                     </div>
                     </div>
                     </div>
                 &nbsp;&nbsp;&nbsp;&nbsp;
             `)
+            })
+        }
+    })
+    firebase.firestore().collection('user_communities').where('followers','array-contains',localStorage.getItem('__CTRACK_USER_EMAIL__')).get().then(qs=>{
+        if(qs.size == 0){
+            $("#communities_followed").append(`
+                    <div class="col-xs-1" onclick='__gotoCommunity("${doc.id}")'>
+                    <div class="card">
+                    <div class="card-body">
+                    <h3 class="card-title">You don't follow any communities</h3>
+                        <p class="card-text">Go global to follow communities</p>
+                    </div>
+                    </div>
+                    </div>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                `)
+        }
+        else{
+            qs.forEach(doc=>{
+                $("#communities_followed").append(`
+                    <div class="col-xs-1" onclick='__gotoCommunity("${doc.id}")'>
+                    <div class="card">
+                    <div class="card-body">
+                    <h3 class="card-title">${doc.data().community_name}</h3>
+                        <p class="card-text">${doc.data().followers.length} ${doc.data().followers.length == 1 ? 'follower':'followers'}</p>
+                    </div>
+                    </div>
+                    </div>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                `)
             })
         }
     })
@@ -69,6 +119,16 @@ class JFormat{
             var temp = (element.innerHTML.split("{"+/.*/+"}"))[0].substr(1,(element.innerHTML.split("{"+/.*/+"}"))[0].length-2)
             element.innerHTML = element.innerHTML.replace(tempWhole,element.innerHTML.replace(tempWhole,this.__obj[temp]))
         }
+    }
+}
+
+let __gotoCommunity = (uid)=>{
+    // ID of Official Community
+    if(uid == "kbDNfFQzrqw3xGoKnNpF"){
+        location.replace(`../community_page/`)
+    }
+    else{
+        location.replace(`../community_page/${uid}`)
     }
 }
 

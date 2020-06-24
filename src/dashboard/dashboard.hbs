@@ -18,21 +18,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
-    <script>
-        var firebaseConfig = {
-        apiKey: "AIzaSyBaIwLYQionwFwlFCPtGmBNhg9JZ0_mqZA",
-        authDomain: "corona-index-db.firebaseapp.com",
-        databaseURL: "https://corona-index-db.firebaseio.com",
-        projectId: "corona-index-db",
-        storageBucket: "corona-index-db.appspot.com",
-        messagingSenderId: "622446950632",
-        appId: "1:622446950632:web:a6d2af3bda10eb97d4315d",
-        measurementId: "G-HS31KZHBCP"
-    };
-
-    firebase.initializeApp(firebaseConfig);
-    firebase.analytics();
-    </script>
+    
     <style>
       body{
         margin: 25px;
@@ -74,6 +60,9 @@
       .table{
         color: #fff;
       }
+      .col-xs-1{
+        width:100%;
+      }
       @media only screen and (max-width:768px){
         h3{
           font-size:20px;
@@ -89,9 +78,6 @@
         }
         .hid-on-mobile{
           display: none;
-        }
-        .col-xs-1{
-          width:100%;
         }
       }
     </style>
@@ -156,7 +142,7 @@
     <hr color="#14c8ff">
     <br>
     <center>
-    <div class="alert btn btn-outline-primary alert-dismissible fade show" role="alert">
+    <div class="alert alert-primary alert-dismissible fade show" role="alert">
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
         <span class="sr-only">Close</span>
@@ -182,6 +168,11 @@
         <h1 class="text-center" style="color: white;">Your communities</h1>
         <br>
         <div id="__selfCommunities" class="row"></div>
+      </div>
+      <div>
+        <h1 class="text-center" style="color: white;">Communities you follow</h1>
+        <br>
+        <div id="communities_followed" class="row"></div>
       </div>
     </div>
     <!-- Optional JavaScript -->

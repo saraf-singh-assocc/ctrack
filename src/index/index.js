@@ -1,9 +1,29 @@
-$(document).ready(()=>{
-    //setTimeout(()=>{
+var firebaseConfig = {
+    apiKey: "AIzaSyBaIwLYQionwFwlFCPtGmBNhg9JZ0_mqZA",
+    authDomain: "corona-index-db.firebaseapp.com",
+    databaseURL: "https://corona-index-db.firebaseio.com",
+    projectId: "corona-index-db",
+    storageBucket: "corona-index-db.appspot.com",
+    messagingSenderId: "622446950632",
+    appId: "1:622446950632:web:a6d2af3bda10eb97d4315d",
+    measurementId: "G-HS31KZHBCP"
+};
+
+firebase.initializeApp(firebaseConfig);
+firebase.analytics();
+
+firebase.auth().onAuthStateChanged(function(user) { //or use firebase.auth().currentUser;
+    if (user) {
+        location.replace('../dashboard')
+    }
+});
+
+// $(document).ready(()=>{
+    // setTimeout(()=>{
     //    $('.main').css('display','none')
     //    $('.parent').css('display','block')
-    //},15000)
-})
+    // },15000)
+// })
 
 /* Get Corona Data */
 

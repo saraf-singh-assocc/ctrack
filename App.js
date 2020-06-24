@@ -29,7 +29,8 @@ app.post('/newCommunityRequest',(req,res)=>{
         followers:[],
         members:admin.firestore.FieldValue.arrayUnion(req.body.comm_user),
         owner_email:req.body.comm_user,
-        owner_name:"Free Account"
+        owner_name:"Free Account",
+        community_info:req.body.comm_info
       }).then(()=>{
         res.end('Access granted')
       }).catch(()=>{

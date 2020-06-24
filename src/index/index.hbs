@@ -11,6 +11,11 @@
     {{!-- <link href="../images/index/styles.css"> --}}
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-analytics.js"></script>
     <script src="../images/index/index.js"></script>
     <style>
         body{
@@ -123,9 +128,6 @@
             }
         }
     </style>
-    <script>
-        
-    </script>
 </head>
 <body>
     {{!-- <div class="main">
@@ -186,35 +188,36 @@
             </table>
         </div>
     </div>
+    </div>
     <br>
-    <div class="jumbotron">
+    <div class="jumbotron text-center">
         <h3>Total cases in countries (Population wise)</h3>
         <canvas id="cdata_on_chart"></canvas>
     </div>
-    <div class="jumbotron">
+    <div class="jumbotron text-center">
         <h3>New cases in countries (Population wise)</h3>
         <canvas id="cdata_on_chart_nc"></canvas>
     </div>
-    <div class="jumbotron">
+    <div class="jumbotron text-center">
         <h3>Total Deaths in countries (Population wise)</h3>
         <canvas id="cdata_on_chart_td"></canvas>
     </div>
-    <div class="jumbotron">
+    <div class="jumbotron text-center">
         <h3>New Deaths in countries (Population wise)</h3>
         <canvas id="cdata_on_chart_nd"></canvas>
     </div>
-    <div class="jumbotron">
+    <div class="jumbotron text-center">
         <h3>Total Recovered in countries (Population wise)</h3>
         <canvas id="cdata_on_chart_tr"></canvas>
     </div>
-    <div class="jumbotron">
+    <div class="jumbotron text-center">
         <h3>New Recovered in countries (Population wise)</h3>
         <canvas id="cdata_on_chart_nr"></canvas>
     </div>
-    <div class="jumbotron">
+    <div class="jumbotron text-center">
         <button type="button" class="btn btn-outline-primary" style='height:40px;width:100%' onclick="location.replace('../login')">Get Started</button>
     </div>
-    <footer class="jumbotron">
+    <footer class="jumbotron text-center">
     <h1><i class="fa fa-copyright" aria-hidden="true"></i> Saraf Singh Assoc.</h1>
     </footer>
     </center>
