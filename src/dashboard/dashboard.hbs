@@ -18,11 +18,18 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css' rel='stylesheet' />
+
     
     <style>
+      html{
+        display:none
+      }
       body{
         margin: 25px;
-        background-color: rgb(20, 20, 20);
+        /*background-color: rgb(20, 20, 20);*/
+        background-image: url('../images/resources/comm_bg.jpg');
       }
       .neon{
         padding: 20px 20px;
@@ -63,6 +70,21 @@
       .col-xs-1{
         width:100%;
       }
+      .only_for_mobile{
+        display: none;
+      }
+      .display-none{
+        display: none;
+      }
+      h5{
+        color: white;
+      }
+      .charts-line{
+        display: none;
+      }
+      .charts-line:nth-child(1){
+        display: block;
+      }
       @media only screen and (max-width:768px){
         h3{
           font-size:20px;
@@ -79,14 +101,18 @@
         .hid-on-mobile{
           display: none;
         }
+        .only_for_mobile{
+          display: block;
+        }
       }
     </style>
     <script src="../images/dashboard/index.js"></script>
+    <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
   </head>
   <body>
     <header>
       <nav class="nav">
-        <a href="javascript:void(0)" class="__top_name nav-link disabled"><jformat>{uemail}</jformat></a>
+        <a href="javascript:void(0)" class="__top_name nav-link disabled" style="color: white;"><jformat>{uemail}</jformat></a>
         <a class="nav-link" href="#">About us</a>
         {{!-- <a class="nav-link" href="#">Community</a> --}}
         <div class="btn-group hid-on-mobile" role="group" aria-label="__community">
@@ -141,43 +167,13 @@
     </header>
     <hr color="#14c8ff">
     <br>
-    <center>
-    <div class="alert alert-primary alert-dismissible fade show" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-        <span class="sr-only">Close</span>
-      </button>
-      <p>We detected that you live in <jformat>{ucountry}</jformat>. <small>Details will be shown accordingly</small></p>
-    </div>
-    </center>
     <div id="__contents">
-        <div class="jumbotron" id="__sponsor">
-          <h1 class="display-4">The Community</h1>
-          <p class="lead">Get news from Saraf Singh Assoc.</p>
-          <hr class="my-2">
-          <p>Follow <kbd>The Community</kbd> to get frequent updates on Covid-19</p>
-          <p class="lead">
-            <a class="btn btn-primary btn-lg" href="../community_page/" role="button">Visit profile  </a>
-          </p>
-        </div>
-      <div>
-        <button type="button" class="btn btn-outline-primary" style="width:100%" onclick="location.replace('../community_new')">Make your own community</button>
-        <br><br>
-      </div>
-      <div class="alert alert-default">
-        <h1 class="text-center" style="color: white;">Your communities</h1>
-        <br>
-        <div id="__selfCommunities" class="row"></div>
-      </div>
-      <div>
-        <h1 class="text-center" style="color: white;">Communities you follow</h1>
-        <br>
-        <div id="communities_followed" class="row"></div>
-      </div>
+      <div id="selfChart1" style="width: 100%;height:450px"></div>
     </div>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </body>
+  <script>
+    __addDataSelf()
+  </script>
 </html>

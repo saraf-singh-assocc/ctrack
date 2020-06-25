@@ -27,9 +27,13 @@
       .navbar,.jumbotron{
         filter: opacity(0.8);
       }
+      .display-none{
+        display:none
+      }
     </style>
     <script>
       __init__("{{comm_id}}")
+      __getPosts("{{comm_id}}")
     </script>
   </head>
   <body>
@@ -69,11 +73,21 @@
         <hr class="my-2">
         <p id="community_info"></p>
         <p class="lead">
-            <a class="btn btn-primary btn-lg" href="javascript:void(0)" role="button" onclick="__addFollower('{{comm_id}}')">Follow</a>
-            <p class="form-text text-muted" id="comm-followers">
-                
-            </p>
+          <p id="main_btns">
+            <a class="btn btn-primary btn-lg" href="javascript:void(0)" role="button" style="display: block;" onclick="__addFollower('{{comm_id}}')" id="follow_btn">Follow</a>
+            <a class="btn btn-primary btn-lg display-none" href="javascript:void(0)" role="button" onclick="__removeFollower('{{comm_id}}')" id="unfollow_btn">Unfollow</a>
+          </p>
+            <p class="form-text text-muted" id="comm-followers"></p>
         </p>
+    </div>
+    <br>
+    <div class="jumbotron">
+      <h1 class="display-3">Posts</h1>
+      <p class="lead">Posts by the owner and members</p>
+      <hr class="my-2">
+      <p class="lead">
+        <div id="post_center" class="row"></div>
+      </p>
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

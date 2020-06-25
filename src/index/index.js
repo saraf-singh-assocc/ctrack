@@ -83,6 +83,7 @@ let __createDataOnChart = ()=>{
                 caDataND[data['Countries'][x]['Country']] = data['Countries'][x]['NewDeaths'];
                 caDataTR[data['Countries'][x]['Country']] = data['Countries'][x]['TotalRecovered'];
                 caDataNR[data['Countries'][x]['Country']] = data['Countries'][x]['NewRecovered'];
+                console.log(data['Countries'][x]['TotalDeaths'])
             }
         }
     }).then(data=>{
@@ -165,7 +166,7 @@ let __createDataOnChart = ()=>{
     var myChart2 = new Chart(ctx2, {
     type: 'bar',
     data: {
-        labels: reqCountries.map(doc=>doc+"("+caDataTC[doc]+")"),
+        labels: reqCountries.map(doc=>doc+"("+caDataTD[doc]+")"),
         datasets: [{
             label: 'Total Cases in prominent countries',
             data: [parseInt(caDataTD['China']), parseInt(caDataTD['India']), parseInt(caDataTD['United States of America']), parseInt(caDataTD['Indonesia']), parseInt(caDataTD['Pakistan']), parseInt(caDataTD['Brazil'])],
