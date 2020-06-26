@@ -53,16 +53,6 @@ class JFormat{
     }
 }
 
-let __gotoCommunity = (uid)=>{
-    // ID of Official Community
-    if(uid == "kbDNfFQzrqw3xGoKnNpF"){
-        location.replace(`../community_page/`)
-    }
-    else{
-        location.replace(`../community_page/${uid}`)
-    }
-}
-
 let __logoutUser = ()=>{
     firebase.auth().signOut().then(function() {
         localStorage.removeItem('__CTRACK_USER_EMAIL__')
@@ -198,6 +188,7 @@ function init(){
 
 }
 
+
 let __addDataSelf = ()=>{
     let selfDataOfMonths = [];
     fetch(`https://api.covid19api.com/country/${localStorage.getItem('__CTRACK_USER_COUNTRY__')}/status/confirmed/live`).then(res=>{
@@ -282,5 +273,91 @@ let __addDataSelf = ()=>{
                 });
             })
         })
-    })
-}
+    }
+
+    let __updateFirstChart = (cn)=>{
+        let selfDataOfMonths = [];
+    fetch(`https://api.covid19api.com/country/${cn}/status/confirmed/live`).then(res=>{
+        if(res.status != 200){
+            return;
+        }
+        let jan = 0, feb = 0, mar = 0, apr = 0, may = 0, june = 0, july = 0, aug = 0, sep = 0, oct = 0, nov = 0, dec = 0;
+        res.json().then(data=>{
+            data.map(doc=>{
+                // console.log(doc['Cases'])
+                if(doc['Date'].split('-')[1] == '01'){
+                    // January
+                    jan+=doc['Cases']
+                }
+                else if(doc['Date'].split('-')[1] == '02'){
+                    // February
+                    feb+=parseInt(doc['Cases'])
+                }
+                else if(doc['Date'].split('-')[1] == '03'){
+                    // March
+                    mar+=parseInt(doc['Cases'])
+                }
+                else if(doc['Date'].split('-')[1] == '04'){
+                    // April
+                    apr+=parseInt(doc['Cases'])
+                }
+                else if(doc['Date'].split('-')[1] == '05'){
+                    // May
+                    may+=parseInt(doc['Cases'])
+                }
+                else if(doc['Date'].split('-')[1] == '06'){
+                    // June
+                    june+=parseInt(doc['Cases'])
+                }
+                else if(doc['Date'].split('-')[1] == '07'){
+                    // July
+                    july+=parseInt(doc['Cases'])
+                }
+                else if(doc['Date'].split('-')[1] == '08'){
+                    // August
+                    aug+=parseInt(doc['Cases'])
+                }
+                else if(doc['Date'].split('-')[1] == '09'){
+                    // September
+                    sep+=parseInt(doc['Cases'])
+                }
+                else if(doc['Date'].split('-')[1] == '10'){
+                    // October
+                    oct+=parseInt(doc['Cases'])
+                }
+                else if(doc['Date'].split('-')[1] == '11'){
+                    // November
+                    nov+=parseInt(doc['Cases'])
+                }
+                else if(doc['Date'].split('-')[1] == '12'){
+                    // December
+                    dec+=parseInt(doc['Cases'])
+                }
+            })
+                cn = cn.charAt(0).toUpperCase()+cn.slice(1)
+                zingchart.render({
+                    id: 'selfChart1',
+                    data: 
+                    {
+                        type: "area",
+                        "plotarea": {
+                            "margin-left": "8%"
+                        },
+                        "title":{  
+                            "text":`${cn}\'s Corona Analysis`  
+                        },
+                        "scale-x":{  
+                            "values":["January","February","March","April","May",  
+                                "June","July","August","September",  
+                                "October","November","December"],  
+                        },
+                        series: [
+                        { values: [jan,feb,mar,apr,may,june,july,aug,sep,oct,nov,dec]}
+                        ]
+                    },
+                    height: '100%',
+                    width: '100%'
+                });
+            })
+        })
+    }
